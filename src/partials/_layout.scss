@@ -1,0 +1,51 @@
+// Sticky footer - start
+app-root {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+app-header, app-footer {
+  flex: none;
+}
+
+main {
+  flex: 1 0 auto;
+  padding-top: $header-info-box-height + $header-height;
+
+  .container {
+    padding-top: $padding-default;
+    padding-bottom: $padding-default;
+  }
+}
+
+// Sticky footer - end
+
+body.has-secondary-nav main {
+  padding-top: $header-info-box-height + $header-height + $header-secondary-nav-height;
+}
+
+body.landing-page {
+  main {
+    padding-top: 0;
+  }
+  nav.main {
+    background-color: transparent;
+  }
+}
+
+.whitespace-v {
+  padding: $padding-large 0;
+}
+
+
+.box {
+  padding: $padding-large;
+  background-color: $color-white2;
+  border-radius: 5px;
+}
+
+.simple-notification-wrapper {
+  z-index: 2000 !important;
+
+}

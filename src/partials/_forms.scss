@@ -1,0 +1,38 @@
+form {
+  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+    margin-top: $margin-medium;
+    margin-bottom: $margin-default;
+  }
+
+  label {
+    cursor: pointer;
+    color: #5c5f63;
+
+    &.header {
+      color: inherit;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+form.responsive {
+
+  .form-group.large .form-control {
+    width: 50%;
+    min-width: 450px;
+  }
+
+  .form-group.medium .form-control {
+    width: 40%;
+    min-width: 300px;
+  }
+
+  .form-group.small .form-control {
+    width: 30%;
+    min-width: 200px;
+  }
+
+  .form-group.small {
+    font-size: inherit;
+  }
+}

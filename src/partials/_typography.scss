@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
+
+// Default fonts
+$font-text-default: 'Arial', serif;
+$font-header-default: 'Montserrat', sans-serif;
+
+h1, h2, h3, h4, h5, a, h5, button td th {
+  font-family: Nunito;
+}
+
+td {
+  color: grey;
+}
+
+head {
+  font-family: Nunito;
+}
+
+.font-primary {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.font-secondary {
+  font-family: 'Kaushan Script';
+}
+
+button {
+  font-family: Nunito;
+  font-weight: bolder;
+}
+
+.strong {
+  font-weight: bold;
+}
+

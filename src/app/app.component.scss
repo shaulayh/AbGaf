@@ -1,0 +1,35 @@
+@import "../partials/variables";
+
+.container {
+
+  width: 900px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+}
+
+.container-fluid {
+
+  top: 25%;
+
+}
+
+agm-map {
+  height: 300px;
+  border-radius: $margin-small;
+}
+
+.modal-backdrop.fade
+{
+  opacity: 0.5;
+}
+.modal-open .modal
+{
+  opacity: 1;
+  background: black;
+}

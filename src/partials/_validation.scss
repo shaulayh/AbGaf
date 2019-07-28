@@ -1,0 +1,9 @@
+@import 'variables';
+
+.form-group.has-error {
+  color: $color-error;
+}
+
+.form-group.has-success {
+  color: $color-text-success;
+}

@@ -1,0 +1,46 @@
+// Box layout variables
+$padding-extra-large: 80px;
+$padding-large: 40px;
+$padding-medium: 30px;
+$padding-default: 15px;
+$padding-small: 5px;
+$margin-extra-large: 80px;
+$margin-large: 40px;
+$margin-medium: 30px;
+$margin-default: 15px;
+$margin-small: 5px;
+
+// Layout sizing
+$header-height: 90px;
+$header-info-box-height: 40px;
+$header-secondary-nav-height: 40px;
+
+// Branding colors
+$color-branding-blue: #1954a0;
+$color-branding-blue-light: lighten($color-branding-blue, 15%);
+$color-branding-red: #9a1d21;
+$color-branding-red-light: lighten($color-branding-red, 15%);
+
+// Additional colors
+$color-golden: #FFDBA1;
+$color-yellow: #F4C507;
+$color-dark-brown: #C6974C;
+$color-light-brown: #DABC8D;
+$color-red: #E42645;
+$color-white: #FFFFFF;
+$color-white2: #E5E5E5;
+$color-white3: #F2F2F2;
+$color-grey: #999999;
+$color-grey-light: lighten(#999999, 15%);
+$color-black: #000000;
+$color-error: #d9534f;
+
+$color-text-success: #28a745; // FIXME: This magic number is taken from Bootstrap, but it would be good to handle it better.
+$color-text-lighter: lighten(#212529, 15%); // FIXME: This magic number is taken from Bootstrap, but it would be good to handle it better.
+
+$color-bg-success: #28a745;
+
+$color-border-gray: #dedede;
+
+// Bootstrap 4.x override
+// TODO: Here you can override variables from BS...
