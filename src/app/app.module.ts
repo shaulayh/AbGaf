@@ -18,7 +18,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './authentication/authentication.service';
 import {LogoutComponent} from './logout/logout.component';
 import {LoginResource} from './login/login.resource';
-import { ProfileComponent } from './profile/profile.component';
+import {ProfileComponent} from './profile/profile.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {DashboardResource} from './dashboard/dashboard.resource';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent,
+    ProductListComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ import { ProfileComponent } from './profile/profile.component';
       apiKey: 'AIzaSyBXTscnZDg_Mt-siAEYSk4m9BPinRzN3Og'
     })
   ],
-  providers: [MapResources, AuthenticationService, MapService, LoginResource],
+  providers: [MapResources, AuthenticationService, MapService, DashboardResource, LoginResource],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent]
 })

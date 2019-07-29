@@ -3,7 +3,8 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RegisterComponent} from '../register/register.component';
-import {AuthenticationService} from '../authentication/authentication.service';
+import {AuthenticationService, AuthResponse} from '../authentication/authentication.service';
+import {LoginResource} from './login.resource';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+  showLoading = false;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               public activeModal: NgbActiveModal,
-              public authService: AuthenticationService) {
+              public authService: AuthenticationService,
+              private loginResource: LoginResource) {
   }
 
   ngOnInit() {
@@ -45,11 +47,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    let username = this.loginForm.controls.username.value;
-    let password = this.loginForm.controls.password.value;
-    if (this.authService.authenticate(username, password)) {
-      console.log('success');
-      this.router.navigate(['profile']);
+
+    const username = this.loginForm.controls.username.value;
+    const password = this.loginForm.controls.password.value;
+    this.showLoading = true;
+    if (!this.authService.authenticate(username, password)) {
+      console.log('was heere');
+      this.showLoading = false;
+      this.activeModal.close('Close click');
     }
   }
 

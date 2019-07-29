@@ -2,6 +2,8 @@
 
 .navbar {
   margin-top: 5px;
+  background-color: transparent;
+
 }
 
 nav {
@@ -18,5 +20,9 @@ button {
 }
 
 .navbar {
-  background-color: $color-black;
+  background-color: transparent;
+}
+
+img {
+  width: 100%;
 }

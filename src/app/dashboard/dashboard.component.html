@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="container">
+    <h1>Add a product</h1>
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext"
+                 id="staticEmail" [value]="sellerEmail">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="billingAddress" class="col-sm-2 col-form-label">Billing Address:*</label>
+        <div class="col-sm-10">
+          <input formControlName="billingAddress"
+                 type="text"
+                 class="form-control" id="billingAddress" placeholder="Billing Address">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="productName" class="col-sm-2 col-form-label">Product Name:*</label>
+        <div class="col-sm-10">
+          <input formControlName="productName"
+                 type="text"
+                 class="form-control" id="productName" placeholder="product name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="price" class="col-sm-2 col-form-label">Per Unit Price:*</label>
+        <div class="col-sm-10">
+          <input formControlName="price" type="number"
+                 class="form-control" id="price" placeholder="Price per Unit">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="category" class="col-sm-2 col-form-label">Category</label>
+        <div class="col-sm-10">
+          <select formControlName="category" id="category" class="form-control">
+            <option value="Education">Education</option>
+            <option value="Minitry">Minitry</option>
+            <option value="Entertainment">Entertainment</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="availableUnit" class="col-sm-2 col-form-label">Available Unit:*</label>
+        <div class="col-sm-10">
+          <input formControlName="availableUnit"
+                 type="number"
+                 class="form-control" id="availableUnit" placeholder="Available Unit">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="imageOfProduct" class="col-sm-2 col-form-label">Product Image:*</label>
+        <div class="col-sm-10">
+          <input (change)="handleUpload($event)" formControlName="image" type="file" id="imageOfProduct">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">Description:</label>
+        <div class="col-sm-10">
+          <textarea formControlName="description" id="description" cols="30"
+                    rows="10" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-success">Button</button>
+      </div>
+    </form>
+  </div>
+</div>

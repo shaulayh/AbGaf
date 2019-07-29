@@ -7,15 +7,6 @@
 </agm-map>
 
 
-<button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
-
-
-<p>
-  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Toggle
-  </button>
-</p>
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
