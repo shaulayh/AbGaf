@@ -1,57 +1,71 @@
-<ngb-carousel #carousel interval="1000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
-  <ng-template ngbSlide *ngFor="let img of images; index as i">
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <a class="navbar-brand" href="#">
-        <img src="../../assets/photo-1504539429156-848c6a3b653f.jpg" alt="">
-        Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Opinions</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav nav-flex-icons">
-          <li *ngIf="!getAuthentication()" class="nav-item">
-            <a (click)="open()" class="nav-link" href="#">Log-in</a>
-          </li>
-          <li *ngIf="!getAuthentication()" class="nav-item">
-            <a routerLink="/register" class="nav-link" href="#">Register</a>
-          </li>
-          <li *ngIf="getAuthentication()" class="nav-item">
-            <a routerLink="/logout" class="nav-link" href="#">logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cart
-              <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="carousel-caption">
-      <h3>My slide {{i + 1}} title</h3>
-    </div>
-    <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
-      <div class="picsum-img-wrapper">
-        <img [src]="img" alt="My image {{i + 1}} description">
-      </div>
-    </a>
-  </ng-template>
-</ngb-carousel>
+<!--<ngb-carousel #carousel interval="1000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">-->
+<!--<ng-template ngbSlide *ngFor="let img of images; index as i">-->
+<!--<div class="carousel-caption">-->
+<!--<h3>My slide {{i + 1}} title</h3>-->
+<!--</div>-->
+<!--<a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">-->
+<!--<div class="picsum-img-wrapper">-->
+<!--<img [src]="img" alt="My image {{i + 1}} description">-->
+<!--</div>-->
+<!--</a>-->
+<!--</ng-template>-->
+<!--</ngb-carousel>-->
 
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="#">
+    <img src="../../assets/photo-1504539429156-848c6a3b653f.jpg" alt="">
+    Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="form-inline my-2 my-lg-0">
+      <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}"
+             class="form-control mr-sm-2"
+             type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{search}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Opinions</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav nav-flex-icons">
+      <div *ngIf="getAuthentication()" class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-success" id="dropdownBasic1" ngbDropdownToggle>User</button>
+          <div class="container">
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a class="form-control" routerLink="/dashboard">Dashboard</a>
+              <a class="form-control" routerLink="/profile">Profile</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <li *ngIf="!getAuthentication()" class="nav-item">
+        <a (click)="open()" class="nav-link" href="#">Log-in</a>
+      </li>
+      <li *ngIf="!getAuthentication()" class="nav-item">
+        <a routerLink="/register" class="nav-link" href="#">Register</a>
+      </li>
+      <li *ngIf="getAuthentication()" class="nav-item">
+        <a routerLink="/logout" class="nav-link" href="#">logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cart
+          <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a>
+      </li>
+    </ul>
+  </div>
+</nav>

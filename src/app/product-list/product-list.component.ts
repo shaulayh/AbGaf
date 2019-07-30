@@ -7,8 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  toDos: string[] = ['../../assets/download.jpg', '../../assets/convert-photo-to-pdf-ios.jpg',
-    '../../assets/download.jpg', '../../assets/download.jpg'];
+  categories: string[] = ['Education', 'Kids',
+    'porn', 'Entertainment'];
 
   currentJustify = 'fill';
 

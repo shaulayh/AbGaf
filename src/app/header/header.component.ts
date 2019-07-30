@@ -20,16 +20,7 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild('carousel') carousel: NgbCarousel;
 
-  // onSlide(slideEvent: NgbSlideEvent) {
-  //   if (this.unpauseOnArrow && slideEvent.paused &&
-  //     (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
-  //     this.togglePaused();
-  //   }
-  //   if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
-  //     this.togglePaused();
-  //   }
-  // }
-  //
+  search = '';
 
   showLogin: boolean;
 
@@ -50,14 +41,25 @@ export class HeaderComponent implements OnInit {
     this.showLogin = this.authService.isUserLoggedIn();
   }
 
-
   open() {
     console.log('was here');
     const modalRef = this.modalService.open(LoginComponent);
     modalRef.componentInstance.name = 'World';
   }
 
+
   getAuthentication() {
     return this.authService.isUserLoggedIn();
   }
+
+  // onSlide(slideEvent: NgbSlideEvent) {
+  //   if (this.unpauseOnArrow && slideEvent.paused &&
+  //     (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
+  //     this.togglePaused();
+  //   }
+  //   if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
+  //     this.togglePaused();
+  //   }
+  // }
+  //
 }

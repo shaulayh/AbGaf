@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row container in-container">
+    <app-product *ngFor="let todo of toDos" [imageUrl]="todo"></app-product>
+  </div>
+
+  <div class="row">
+    <div class="container-page">
+      <ngb-pagination class="d-flex justify-content-center"
+                      [collectionSize]="70" [(page)]="page"></ngb-pagination>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
