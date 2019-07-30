@@ -24,6 +24,7 @@ import {DashboardResource} from './dashboard/dashboard.resource';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
 import { ProductSectionComponent } from './product-section/product-section.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProductSectionComponent } from './product-section/product-section.compo
     DashboardComponent,
     ProductListComponent,
     ProductComponent,
-    ProductSectionComponent
+    ProductSectionComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
