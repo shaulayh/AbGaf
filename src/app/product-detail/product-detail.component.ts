@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
+import {ProductsResources} from '../product-section/products.resources';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,7 +11,8 @@ export class ProductDetailComponent implements OnInit {
 
   user: { id: number, name: string };
 
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor(private activeRoute: ActivatedRoute,
+              private productResources: ProductsResources) {
   }
 
   ngOnInit() {
@@ -19,10 +21,15 @@ export class ProductDetailComponent implements OnInit {
       id: +this.activeRoute.snapshot.params['id'],
       name: this.activeRoute.snapshot.params['name']
     };
+    this.productResources.getProductById(this.user.id).subscribe((next) => {
+      console.log(next);
+    });
     this.activeRoute.params.subscribe((param: Params) => {
       this.user.id = +param['id'];
       this.user.name = param['name'];
     });
+
+
   }
 
 }

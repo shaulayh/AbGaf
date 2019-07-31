@@ -21,10 +21,11 @@ import {LoginResource} from './login/login.resource';
 import {ProfileComponent} from './profile/profile.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {DashboardResource} from './dashboard/dashboard.resource';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductComponent } from './product/product.component';
-import { ProductSectionComponent } from './product-section/product-section.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import {ProductListComponent} from './product-list/product-list.component';
+import {ProductComponent} from './product/product.component';
+import {ProductSectionComponent} from './product-section/product-section.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {ProductsResources} from './product-section/products.resources';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
       apiKey: 'AIzaSyBXTscnZDg_Mt-siAEYSk4m9BPinRzN3Og'
     })
   ],
-  providers: [MapResources, AuthenticationService, MapService, DashboardResource, LoginResource],
+  providers: [MapResources, AuthenticationService,
+    MapService, ProductsResources,
+    DashboardResource,
+    LoginResource],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent]
 })
