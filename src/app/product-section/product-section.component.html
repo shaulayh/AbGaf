@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row container in-container">
-    <app-product *ngFor="let todo of toDos" [imageUrl]="todo"></app-product>
+    <app-product *ngFor="let product of products"
+                 [product]="product"
+                 [imageUrl]="product.image"></app-product>
   </div>
 
   <div class="row">

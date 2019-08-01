@@ -64,7 +64,10 @@
         </div>
       </div>
       <div class="text-center">
-        <button class="btn btn-success">Button</button>
+        <button class="btn btn-success">Add Item</button>
+        <div *ngIf="showMessage" class="show">
+          <p>Succesfully Added</p>
+        </div>
       </div>
     </form>
   </div>

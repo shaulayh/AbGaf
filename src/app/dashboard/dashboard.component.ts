@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   addProductForm: FormGroup;
   sellerEmail: string;
   productImage: any = File;
+  showMessage = false;
 
   constructor(private authService: AuthenticationService,
               private loginResource: LoginResource,
@@ -62,12 +63,13 @@ export class DashboardComponent implements OnInit {
     console.log(productFormInfo);
     formData.append('product', JSON.stringify(productFormInfo));
     formData.append('file', this.productImage);
-    this.dashBoardResource.saveUserToServer(formData).subscribe(
-      (response) => {
-        console.log(response);
+    console.log(this.productImage);
+    this.dashBoardResource.saveUserToServer(formData).toPromise().then(() => {
+        this.showMessage = true;
       }
-    );
-
+    ).catch(reason => {
+      console.log('rejected ' + reason);
+    });
 
   }
 

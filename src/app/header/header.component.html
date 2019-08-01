@@ -1,16 +1,3 @@
-<!--<ngb-carousel #carousel interval="1000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">-->
-<!--<ng-template ngbSlide *ngFor="let img of images; index as i">-->
-<!--<div class="carousel-caption">-->
-<!--<h3>My slide {{i + 1}} title</h3>-->
-<!--</div>-->
-<!--<a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">-->
-<!--<div class="picsum-img-wrapper">-->
-<!--<img [src]="img" alt="My image {{i + 1}} description">-->
-<!--</div>-->
-<!--</a>-->
-<!--</ng-template>-->
-<!--</ngb-carousel>-->
-
 <nav class="navbar navbar-expand-lg navbar-dark">
   <a class="navbar-brand" href="#">
     <img src="../../assets/photo-1504539429156-848c6a3b653f.jpg" alt="">
@@ -22,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <form class="form-inline my-2 my-lg-0">
       <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}"
-             class="form-control mr-sm-2"
+             class="form-control mr-sm-2 long-search"
              type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
