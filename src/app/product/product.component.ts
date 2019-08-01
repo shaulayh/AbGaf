@@ -12,17 +12,15 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class ProductComponent implements OnInit {
 
   @Input()
-  imageUrl: string;
-
-  @Input()
   product: Product;
 
   image: any;
 
-  constructor(private productResource: ProductsResources) {
+  constructor() {
   }
 
   ngOnInit() {
+    this.image = 'data:image/JPG;base64,' + this.product.image;
   }
 
 }
