@@ -3,6 +3,7 @@ import {LoginComponent} from '../login/login.component';
 import {NgbCarousel, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {NgbSlideEvent} from '@ng-bootstrap/ng-bootstrap/carousel/carousel';
+import {SharedService} from '../shared/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit {
   showLogin: boolean;
 
   constructor(private modalService: NgbModal,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private sharedService: SharedService) {
   }
 
   togglePaused() {
@@ -39,6 +41,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.showLogin = this.authService.isUserLoggedIn();
+    this.getCount();
   }
 
   open() {
@@ -52,14 +55,7 @@ export class HeaderComponent implements OnInit {
     return this.authService.isUserLoggedIn();
   }
 
-  // onSlide(slideEvent: NgbSlideEvent) {
-  //   if (this.unpauseOnArrow && slideEvent.paused &&
-  //     (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
-  //     this.togglePaused();
-  //   }
-  //   if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
-  //     this.togglePaused();
-  //   }
-  // }
-  //
+  getCount() {
+    return this.sharedService.getNumberOfItemInCart();
+  }
 }

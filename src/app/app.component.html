@@ -1,26 +1,8 @@
+<simple-notifications [options]="notificationsConfig"></simple-notifications>
 <app-header></app-header>
-
 <router-outlet></router-outlet>
-
 <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="checkLocation($event)">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
 </agm-map>
-
-
-<div id="collapseExample" [ngbCollapse]="isCollapsed">
-  <div class="card">
-    <div class="card-body">
-      You can collapse this card by clicking Toggle
-    </div>
-  </div>
-</div>
-<div class="centered-container main-footer justify-content-center">
-  <i class="fa fa-facebook fa-2x">&nbsp; &nbsp;</i>
-  <i class="fa fa-google-plus fa-2x">&nbsp; &nbsp;</i>
-  <i class="fa fa-twitter fa-2x">&nbsp; &nbsp;</i>
-  <i class="fa fa-youtube fa-2x">&nbsp; &nbsp;</i>
-  <i class="fa fa-pinterest-p fa-2x">&nbsp; &nbsp;</i>
-  <h5 class="text-center"> &copy;designed by shaulayh</h5>
-</div>
-
+<app-footer></app-footer>
 

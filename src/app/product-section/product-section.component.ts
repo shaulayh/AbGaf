@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsResources} from './products.resources';
 import {Product} from '../model/product-model';
+import {NotificationsService} from '../module/notifications.service';
 
 @Component({
   selector: 'app-product-section',

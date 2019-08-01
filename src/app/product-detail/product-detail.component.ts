@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {ProductsResources} from '../product-section/products.resources';
 import {Product} from '../model/product-model';
+import {ProductService} from '../product/product.service';
+import {NotificationsService} from '../module/notifications.service';
+import {SharedService} from '../shared/shared.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,8 +19,14 @@ export class ProductDetailComponent implements OnInit {
 
   imageUrl = 'data:image/JPG;base64,';
 
+  productsAddedToCart: any;
+  numberOfItemInCart: number;
+
   constructor(private activeRoute: ActivatedRoute,
-              private productResources: ProductsResources) {
+              private productResources: ProductsResources,
+              private productsService: ProductService,
+              private notificationService: NotificationsService,
+              private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -37,4 +46,28 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
+
+  addToCart(product: Product) {
+    console.log(product);
+    this.productsAddedToCart = JSON.parse(this.productsService.getProductsFromCart());
+    if (this.productsAddedToCart == null) {
+      this.productsAddedToCart = [];
+      this.productsAddedToCart.push(product);
+      this.productsService.addToCart(this.productsAddedToCart);
+      console.log(this.productsAddedToCart);
+      this.notificationService.success('successfully added');
+    } else {
+      const temp = this.productsAddedToCart.find(p => p.id === product.id);
+      if (temp == null) {
+        console.log(temp);
+        this.productsAddedToCart.push(this.product);
+        this.productsService.addToCart(this.productsAddedToCart);
+        this.notificationService.success('successfully added');
+      }
+    }
+    this.numberOfItemInCart = this.productsAddedToCart.length;
+    console.log(this.numberOfItemInCart);
+    this.sharedService.updateNumberOfItemOnCart(this.numberOfItemInCart);
+    this.sharedService.updateCurrentCart(this.numberOfItemInCart);
+  }
 }

@@ -26,6 +26,13 @@ import {ProductComponent} from './product/product.component';
 import {ProductSectionComponent} from './product-section/product-section.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {ProductsResources} from './product-section/products.resources';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SimpleNotificationsModule} from 'angular2-notifications';
+import {NotificationsService} from './module/notifications.service';
+import {FooterComponent} from './footer/footer.component';
+import {CartComponent} from './cart/cart.component';
+import {ProductService} from './product/product.service';
+import {SharedService} from './shared/shared.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,9 @@ import {ProductsResources} from './product-section/products.resources';
     ProductListComponent,
     ProductComponent,
     ProductSectionComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -55,12 +64,18 @@ import {ProductsResources} from './product-section/products.resources';
     AlertModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBXTscnZDg_Mt-siAEYSk4m9BPinRzN3Og'
-    })
+    }),
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
-  providers: [MapResources, AuthenticationService,
-    MapService, ProductsResources,
+  providers: [MapResources,
+    AuthenticationService,
+    MapService,
+    ProductsResources,
     DashboardResource,
-    LoginResource],
+    ProductService,
+    LoginResource, SharedService,
+    NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent]
 })

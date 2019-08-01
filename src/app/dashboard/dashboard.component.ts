@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService, UserResponse} from '../authentication/authentication.service';
-import {setOffsetToUTC} from 'ngx-bootstrap/chronos/units/offset';
 import {LoginResource} from '../login/login.resource';
 import {DashboardResource} from './dashboard.resource';
+import {NotificationsService} from '../module/notifications.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private loginResource: LoginResource,
+              private notification: NotificationsService,
               private dashBoardResource: DashboardResource) {
   }
 
@@ -66,6 +67,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.productImage);
     this.dashBoardResource.saveUserToServer(formData).toPromise().then(() => {
         this.showMessage = true;
+        this.notification.success('was added succesfullyy');
       }
     ).catch(reason => {
       console.log('rejected ' + reason);

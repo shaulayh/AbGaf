@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MapResources} from './map-resources';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {GoodComponent} from './good/good.component';
-import {LoginComponent} from './login/login.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NotificationsService} from './module/notifications.service';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +17,12 @@ export class AppComponent implements OnInit {
   lng = 7.809007;
   public isCollapsed = false;
   closeResult: string;
+  public notificationsConfig;
 
   constructor(private mapResources: MapResources,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private notificationsService: NotificationsService) {
+    this.notificationsConfig = notificationsService.notificationsConfig;
   }
 
 
@@ -37,9 +39,6 @@ export class AppComponent implements OnInit {
     this.lat = event.coords.latitude;
     this.lng = event.coords.longitude;
   }
-
-
-
 
 
 }
