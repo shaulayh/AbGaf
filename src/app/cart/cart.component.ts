@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.productsAddedToCart = JSON.parse(this.productsService.getProductsFromCart());
     for (const item of this.productsAddedToCart) {
-      item.availableUnit = <string>1;
+      item.availableUnit = String(1);
     }
     this.productsService.removeProductsFromCart();
     this.productsService.addToCart(this.productsAddedToCart);
@@ -40,8 +40,9 @@ export class CartComponent implements OnInit {
 
   onDecrease(product: Product) {
     const inProduct = this.productsAddedToCart.find(p => p.id === product.id);
-    if (inProduct.availableUnit > 0) {
-      inProduct.availableUnit = product.availableUnit - 1;
+    let temp: number = Number(inProduct.availableUnit);
+    if (temp > 1) {
+     inProduct.availableUnit = String(product.availableUnit - 1);
     }
     this.productsService.removeProductsFromCart();
     this.productsService.addToCart(this.productsAddedToCart);
@@ -53,7 +54,7 @@ export class CartComponent implements OnInit {
   }
 
   calculateTotal(allItem: Product[]) {
-    let total = 0;
+    let total: any = 0;
     for (const item of allItem) {
       total = total + (item.availableUnit * item.price);
     }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MapResources} from './map-resources';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationsService} from './module/notifications.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +23,13 @@ export class AppComponent implements OnInit {
 
   constructor(private mapResources: MapResources,
               private modalService: NgbModal,
-              private notificationsService: NotificationsService) {
+              private notificationsService: NotificationsService,
+              iconRegistry: MatIconRegistry,
+              sanitizer: DomSanitizer) {
     this.notificationsConfig = notificationsService.notificationsConfig;
+    iconRegistry.addSvgIcon(
+      'thumbs-up',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/thumb-up.svg'));
   }
 
 

@@ -43,13 +43,14 @@
       <li *ngIf="getAuthentication()" class="nav-item">
         <a routerLink="/logout" class="nav-link" href="#">logout</a>
       </li>
-      <li id="ex4">
+      <li>
         <a href="">
-          <span class="p1 fa-stack fa-2x has-badge " data-count="">3
-           <i class="p3 fa fa-shopping-cart fa-stack-1x xfa-inverse" data-count="4b"></i>
-         </span>
+          <mat-icon svgIcon="thumbs-up" matBadge="3" matBadgeColor="warn">home</mat-icon>
+          <!-- Include text description of the icon's meaning for screen-readers -->
+          <span class="cdk-visually-hidden">
+      Example with a home icon with overlaid badge showing the number 15
+       </span>
         </a>
-
       </li>
     </ul>
   </div>

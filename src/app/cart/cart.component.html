@@ -1,8 +1,8 @@
 <div class="container">
   <h1 class="text-right">{{getTotal()}}</h1>
   <table class="table table-bordered">
-    <thead>
-    <tr>
+    <thead class="thead-light ">
+    <tr class="text-center">
       <th scope="col">Image</th>
       <th scope="col">Name</th>
       <th scope="col">Description</th>
@@ -16,13 +16,13 @@
     <tbody>
     <tr *ngFor="let product of productsAddedToCart">
       <td scope="row">
-        <img [src]="'data:image/JPG;base64,'+product.image" alt="">
+        <img [src]="'data:image/JPG;base64,'+product.image">
       </td>
       <td>{{product.productName}}</td>
       <td><p>
         {{product.description}}
       </p></td>
-      <td>{{product.price}}</td>
+      <td>{{product.price| currency:'USD'}}</td>
       <td>
         <div class="form-check form-check-inline">
           <button (click)="onDecrease(product)" class="btn btn-danger">-</button>
@@ -33,9 +33,16 @@
         </div>
       </td>
       <td>{{product.availableUnit}}</td>
-      <td>{{product.price * product.availableUnit}}</td>
+      <td>{{(product.price * product.availableUnit)| currency:'USD'}}</td>
       <td>
         <button (click)="removeFromCart(product)" class="btn btn-danger">remove</button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6" class="text-right">Total</td>
+      <td><h4 class="text-success">{{getTotal()| currency:'USD'}}:</h4></td>
+      <td>
+        <button class="btn btn-outline-success">Check-out</button>
       </td>
     </tr>
     </tbody>
