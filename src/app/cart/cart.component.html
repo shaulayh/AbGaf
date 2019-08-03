@@ -160,11 +160,13 @@
         <mat-divider></mat-divider>
         <mat-list-item>Shipping Address: {{address}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Item 3</mat-list-item>
+        <mat-list-item>Phone: {{shippingForm.controls['phoneNo'].value}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Remark: {{shippingForm.controls['remark'].value}}</mat-list-item>
       </mat-list>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+      <div class="container btn-group">
+        <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
+        <button mat-button (click)="stepper.reset()" class="btn btn-success">Reset</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

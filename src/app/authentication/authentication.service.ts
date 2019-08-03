@@ -9,8 +9,6 @@ import {SubjectSubscription} from 'rxjs/SubjectSubscription';
 
 export class AuthenticationService {
 
-  userEmail: string;
-
   constructor(private loginResource: LoginResource,
               private router: Router) {
   }
@@ -46,13 +44,13 @@ export class AuthenticationService {
     this.loginResource.getLoggedInUser(localStorage.getItem('accessToken')).subscribe(
       (next: UserResponse) => {
         response = next;
-        this.userEmail = next.email;
-        console.log(response);
+        localStorage.setItem('currentUser', JSON.stringify(response));
         return response;
       }
     );
 
-    return response;
+    const user: UserResponse = JSON.parse(localStorage.getItem('currentUser'));
+    return user;
   }
 
   logOut() {
@@ -66,7 +64,7 @@ export interface AuthResponse {
   tokenType: string;
 }
 
-export interface UserResponse {
+export class UserResponse {
   id: number;
   email: string;
   birthDate: string;

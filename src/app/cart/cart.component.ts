@@ -2,6 +2,8 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ProductService} from '../product/product.service';
 import {Product} from '../model/product-model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../authentication/authentication.service';
+import {Item} from '../model/item.model';
 
 @Component({
   selector: 'app-cart',
@@ -19,12 +21,14 @@ export class CartComponent implements OnInit, OnChanges {
   options: FormGroup;
   displayedColumns: string[] = ['Product', 'Price', 'Quantity', 'Total'];
 
-  displayShippingDetail: string[] = ['Name', 'Address', 'email', 'remark'];
+  orderItems: Item[];
+
   dataSource: any = [];
   address: string;
 
   constructor(private productsService: ProductService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private authService: AuthenticationService) {
     this.options = formBuilder.group({
       hideRequired: false,
       floatLabel: 'auto',
@@ -110,6 +114,38 @@ export class CartComponent implements OnInit, OnChanges {
       + ',' + this.shippingForm.controls['city'].value + ' '
       + this.shippingForm.controls['state'].value + ','
       + this.shippingForm.controls['postNo'].value;
+
+    const user: any = this.authService.getCurrentUser();
+    const order: any = {};
+    order.customerId = user.id;
+    order.customerName = user.name;
+    order.phone = this.shippingForm.controls['phoneNo'].value;
+    order.deliveryAddress = this.address;
+    order.status = 'ordered';
+    order.orderPaymentMethod = 'cash on delivery';
+    const time = new Date();
+    order.paymentReference = user.id + '' +
+      time.getDate() + time.getFullYear() + '' +
+      time.getHours() + '' + time.getMinutes() + '' + time.getSeconds();
+    // alert(order.paymentReference);
+
+    this.orderItems = [];
+
+    for (const product of this.productsAddedToCart) {
+      this.orderItems.push({
+          id: 0,
+          productId: product.id,
+          sellerId: 0,
+          sellerEmail: product.email,
+          productName: product.productName,
+          orderedQuantity: product.availableUnit,
+          perUnitPrice: product.price,
+          OrderedId: 0,
+        }
+      );
+    }
+    order.orderItems = this.orderItems;
+    console.log(order);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
