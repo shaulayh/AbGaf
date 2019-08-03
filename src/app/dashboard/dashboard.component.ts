@@ -24,10 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.addProductForm = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email
-      ]),
+      email: new FormControl('', []),
       billingAddress: new FormControl('kuawska', [Validators.required]),
       price: new FormControl('12', [Validators.required]),
       availableUnit: new FormControl('12', [Validators.required]),
@@ -66,11 +63,13 @@ export class DashboardComponent implements OnInit {
     formData.append('file', this.productImage);
     console.log(this.productImage);
     this.dashBoardResource.saveUserToServer(formData).toPromise().then(() => {
+        this.addProductForm.reset();
         this.showMessage = true;
         this.notification.success('was added succesfullyy');
       }
     ).catch(reason => {
       console.log('rejected ' + reason);
+      this.notification.error('not added because' + reason);
     });
 
   }
