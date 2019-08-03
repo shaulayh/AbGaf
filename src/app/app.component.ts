@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     this.notificationsConfig = notificationsService.notificationsConfig;
     iconRegistry.addSvgIcon(
       'thumbs-up',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/thumb-up.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-shopping_cart-24px.svg'));
   }
 
 

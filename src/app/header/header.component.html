@@ -44,8 +44,8 @@
         <a routerLink="/logout" class="nav-link" href="#">logout</a>
       </li>
       <li>
-        <a href="">
-          <mat-icon svgIcon="thumbs-up" matBadge="3" matBadgeColor="warn">home</mat-icon>
+        <a routerLink="/user/cart">
+          <mat-icon svgIcon="thumbs-up" [matBadge]="getCount()" matBadgeColor="warn">home</mat-icon>
           <!-- Include text description of the icon's meaning for screen-readers -->
           <span class="cdk-visually-hidden">
       Example with a home icon with overlaid badge showing the number 15

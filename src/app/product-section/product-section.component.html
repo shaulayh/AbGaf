@@ -5,13 +5,10 @@
     ></app-product>
   </div>
 
-  <div class="row">
-    <div class="container-page">
-      <ngb-pagination class="d-flex justify-content-center"
-                      [collectionSize]="70" [(page)]="page"></ngb-pagination>
-    </div>
-  </div>
-
+  <mat-paginator [length]="100"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 </div>
 
 

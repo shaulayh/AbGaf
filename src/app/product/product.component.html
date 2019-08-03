@@ -4,8 +4,8 @@
       <img [src]="image" class="card-img-top" alt="...">
     </a>
     <div class="card-body">
-      <h5 class="card-title">{{product.productName}}</h5>
-      <p class="card-text">{{product.description}}</p>
+      <h5 class="card-title">{{product.productName | slice:0:10}}</h5>
+      <p class="card-text">{{product.description | slice:0:20}}</p>
     </div>
     <div> select information</div>
     <div class="card-body">

@@ -34,9 +34,8 @@ import {CartComponent} from './cart/cart.component';
 import {ProductService} from './product/product.service';
 import {SharedService} from './shared/shared.service';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatBadgeModule} from '@angular/material/badge';
 import {MyOwnCustomMaterialModule} from './shared/MyOwnCustomMaterial.module';
+
 
 @NgModule({
   declarations: [
