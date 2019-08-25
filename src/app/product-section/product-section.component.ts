@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductsResources} from './products.resources';
 import {Product} from '../model/product-model';
 import {NotificationsService} from '../module/notifications.service';
+import {ActivateRoutes} from '@angular/router/src/operators/activate_routes';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product-section',
@@ -9,12 +11,12 @@ import {NotificationsService} from '../module/notifications.service';
   styleUrls: ['./product-section.component.scss']
 })
 export class ProductSectionComponent implements OnInit {
-  toDos: string[] = ['../../assets/download.jpg', '../../assets/convert-photo-to-pdf-ios.jpg',
-    '../../assets/download.jpg', '../../assets/download.jpg'];
 
   products: Product[];
 
-  constructor(private productsResource: ProductsResources) {
+  constructor(private productsResource: ProductsResources,
+              private router: ActivatedRoute) {
+    this.products = this.router.snapshot.data['productList'];
   }
 
   ngOnInit() {

@@ -47,12 +47,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
     const username = this.loginForm.controls.username.value;
     const password = this.loginForm.controls.password.value;
     this.showLoading = true;
     if (!this.authService.authenticate(username, password)) {
-      console.log('was heere');
       this.showLoading = false;
       this.activeModal.close('Close click');
     }

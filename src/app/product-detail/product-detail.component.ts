@@ -37,7 +37,6 @@ export class ProductDetailComponent implements OnInit {
     };
     this.productResources.getProductById(this.user.id).subscribe((next) => {
       this.product = next;
-      console.log(this.product);
       this.imageUrl = this.imageUrl + this.product.image;
     });
     this.activeRoute.params.subscribe((param: Params) => {
@@ -48,25 +47,21 @@ export class ProductDetailComponent implements OnInit {
 
 
   addToCart(product: Product) {
-    console.log(product);
     this.productsAddedToCart = JSON.parse(this.productsService.getProductsFromCart());
     if (this.productsAddedToCart == null) {
       this.productsAddedToCart = [];
       this.productsAddedToCart.push(product);
       this.productsService.addToCart(this.productsAddedToCart);
-      console.log(this.productsAddedToCart);
       this.notificationService.success('successfully added');
     } else {
       const temp = this.productsAddedToCart.find(p => p.id === product.id);
       if (temp == null) {
-        console.log(temp);
         this.productsAddedToCart.push(this.product);
         this.productsService.addToCart(this.productsAddedToCart);
         this.notificationService.success('successfully added');
       }
     }
     this.numberOfItemInCart = this.productsAddedToCart.length;
-    console.log(this.numberOfItemInCart);
     this.sharedService.updateNumberOfItemOnCart(this.numberOfItemInCart);
     this.sharedService.updateCurrentCart(this.numberOfItemInCart);
   }

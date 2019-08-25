@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {RegisterRequest} from '../login/login.resource';
+import {AuthenticationService} from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -9,55 +11,36 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
-  loading = false;
-  submitted = false;
+  registrationForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    this.registrationForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['email', [Validators.email, Validators.required]],
-      phone: ['phone number', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
       role: ['Select Role', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordRepeat: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   // convenience getter for easy access to form fields
   get f() {
-    return this.registerForm.controls;
+    return this.registrationForm.controls;
   }
 
-  // onSubmit() {
-  //   this.submitted = true;
-  //
-  //   // stop here if form is invalid
-  //   if (this.registerForm.invalid) {
-  //     return;
-  //   }
-  //
-  //   this.loading = true;
-  //   this.userService.register(this.registerForm.value)
-  //     .pipe(first())
-  //     .subscribe(
-  //       data => {
-  //         this.alertService.success('Registration successful', true);
-  //         this.router.navigate(['/login']);
-  //       },
-  //       error => {
-  //         this.alertService.error(error);
-  //         this.loading = false;
-  //       });
-  // }
-
-
   onSubmit() {
-    console.log(this.f);
+    const request: any = {};
+    request.email = this.f['email'].value;
+    request.name = this.f['firstName'].value + ' ' + this.f['lastName'].value;
+    request.password = this.f['password'].value;
+    request.role = this.f['role'].value;
+    this.registrationForm.reset();
+    this.authService.signUp(request);
   }
 }

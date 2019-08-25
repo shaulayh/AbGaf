@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from '../authentication/authentication.service';
+import {AuthenticationService, Roles} from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +10,18 @@ export class ProfileComponent implements OnInit {
 
   name: string;
   email: string;
+  role = '';
 
   constructor(private authService: AuthenticationService) {
   }
 
   ngOnInit() {
-    let user = this.authService.getCurrentUser();
+    const user = this.authService.getCurrentUser();
     this.name = user.name;
     this.email = user.email;
+    for (const role of user.roles) {
+      this.role = this.role + role.name;
+    }
   }
 
 }

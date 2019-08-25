@@ -26,6 +26,8 @@ export class CartComponent implements OnInit, OnChanges {
   dataSource: any = [];
   address: string;
 
+  totalItemInCart = 0;
+
   constructor(private productsService: ProductService,
               private formBuilder: FormBuilder,
               private authService: AuthenticationService) {
@@ -37,12 +39,15 @@ export class CartComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.productsAddedToCart = JSON.parse(this.productsService.getProductsFromCart());
-    for (const item of this.productsAddedToCart) {
-      item.availableUnit = 1;
+    for (let i in this.productsAddedToCart) {
+      this.productsAddedToCart[i].availableUnit = 1;
     }
-    this.productsService.removeProductsFromCart();
-    this.productsService.addToCart(this.productsAddedToCart);
-    this.calculateTotal(this.productsAddedToCart);
+    if (this.productsAddedToCart != null) {
+      this.totalItemInCart = this.productsAddedToCart.length;
+      this.productsService.removeProductsFromCart();
+      this.productsService.addToCart(this.productsAddedToCart);
+      this.calculateTotal(this.productsAddedToCart);
+    }
 
     this.shippingForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -85,13 +90,17 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   getTotal() {
-    return this.calculateTotal(this.productsAddedToCart);
+    if (this.calculateTotal(this.productsAddedToCart) != null) {
+      return this.calculateTotal(this.productsAddedToCart);
+    } else {
+      return 0;
+    }
   }
 
   calculateTotal(allItem: Product[]) {
     let total: any = 0;
-    for (const item of allItem) {
-      total = total + (item.availableUnit * item.price);
+    for (let i in allItem) {
+      total = total + (allItem[i].availableUnit * allItem[i].price);
     }
     return total;
   }
@@ -104,12 +113,10 @@ export class CartComponent implements OnInit, OnChanges {
       }
     }
     this.productsAddedToCart.splice(index, 1);
-    console.log(index);
   }
 
   onSubmitDetail() {
     this.dataSource = this.productsAddedToCart;
-    console.log(this.shippingForm);
     this.address = this.shippingForm.controls['addressOne'].value
       + ',' + this.shippingForm.controls['city'].value + ' '
       + this.shippingForm.controls['state'].value + ','
@@ -145,11 +152,9 @@ export class CartComponent implements OnInit, OnChanges {
       );
     }
     order.orderItems = this.orderItems;
-    console.log(order);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     this.address = this.shippingForm.controls['addressOne'].value
       + ',' + this.shippingForm.controls['city'].value + ' '
       + this.shippingForm.controls['state'].value + ','

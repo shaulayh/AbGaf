@@ -4,6 +4,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationsService} from './module/notifications.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
+import {Router, NavigationStart, NavigationEnd} from '@angular/router';
+import {Event} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,20 +15,29 @@ import {MatIconRegistry} from '@angular/material';
 
 
 export class AppComponent implements OnInit {
-  title = 'AbGAF';
+  showLoadingIndicator = true;
   lat = 51.678418;
 
   lng = 7.809007;
-  public isCollapsed = false;
-  closeResult: string;
+  private publishableKey = 'pk_test_tQF4q4t82CH8ZTNaV7jKrz0700hou6IPzV';
   public notificationsConfig;
 
   constructor(private mapResources: MapResources,
               private modalService: NgbModal,
               private notificationsService: NotificationsService,
-              iconRegistry: MatIconRegistry,
-              sanitizer: DomSanitizer) {
+              public iconRegistry: MatIconRegistry,
+              public sanitizer: DomSanitizer,
+              private router: Router) {
+    this.router.events.subscribe((routerEvent: Event) => {
+      if (routerEvent instanceof NavigationStart) {
+        this.showLoadingIndicator = true;
+      }
+      if (routerEvent instanceof NavigationEnd) {
+        this.showLoadingIndicator = false;
+      }
+    });
     this.notificationsConfig = notificationsService.notificationsConfig;
+    // this.StripeScriptTag.setPublishableKey(this.publishableKey);
     iconRegistry.addSvgIcon(
       'thumbs-up',
       sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-shopping_cart-24px.svg'));
@@ -35,7 +46,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.mapResources.getlocation().subscribe(data => {
-      console.log(data);
       this.lat = data.latitude;
       this.lng = data.longitude;
     });

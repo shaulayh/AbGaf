@@ -15,7 +15,11 @@ export class SharedService {
 
   getNumberOfItemInCart() {
     this.products = JSON.parse(localStorage.getItem('products'));
-    return this.products.length;
+    if (this.products.length != null) {
+      return this.products.length;
+    } else {
+      return 0;
+    }
   }
 
   updateCurrentCart(number) {

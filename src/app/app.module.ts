@@ -10,7 +10,6 @@ import {GoodComponent} from './good/good.component';
 import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MapResources} from './map-resources';
-import {MapService} from './map.service';
 import {StudentComponent} from './student/student.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
@@ -26,15 +25,17 @@ import {ProductComponent} from './product/product.component';
 import {ProductSectionComponent} from './product-section/product-section.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {ProductsResources} from './product-section/products.resources';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {NotificationsService} from './module/notifications.service';
 import {FooterComponent} from './footer/footer.component';
 import {CartComponent} from './cart/cart.component';
 import {ProductService} from './product/product.service';
 import {SharedService} from './shared/shared.service';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MyOwnCustomMaterialModule} from './shared/MyOwnCustomMaterial.module';
+import {ProductsSectionResolve} from './product-section/products.-section.resolve';
+import {AuthGuard} from './authentication/auth.guard';
+import {AuthSellerGuard} from './authentication/auth-seller.guard';
 
 
 @NgModule({
@@ -78,11 +79,14 @@ import {MyOwnCustomMaterialModule} from './shared/MyOwnCustomMaterial.module';
   ],
   providers: [MapResources,
     AuthenticationService,
-    MapService,
     ProductsResources,
     DashboardResource,
     ProductService,
-    LoginResource, SharedService,
+    LoginResource,
+    ProductsSectionResolve,
+    SharedService,
+    AuthSellerGuard,
+    AuthGuard,
     NotificationsService],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent]

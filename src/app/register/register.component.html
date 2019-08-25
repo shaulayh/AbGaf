@@ -1,114 +1,209 @@
-<div class="container">
-  <h2>Register</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
-                 formControlName="firstName"
-                 id="firstName"
-                 class="form-control"
-                 type="text"
-          />
-          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">First Name is required</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input
-            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
-            formControlName="lastName" id="lastName"
-            class="form-control"
-            type="text"
-          />
-          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-            formControlName="username" id="username"
-            class="form-control"
-            type="text"
-          />
-          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is required</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-8">
-        <div class="form-group">
-          <label for="phone">Phone no*</label>
-          <input
-            [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"
-            formControlName="phone" id="phone"
-            class="form-control"
-            type="number"
-          />
-          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-            <div *ngIf="f.email.phone.required">email is required</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="email">Email*</label>
-      <input
-        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
-        formControlName="email" id="email"
-        class="form-control"
-        type="text"
-      />
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">email is required</div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                 formControlName="password" id="password"
-                 class="form-control"
-                 type="password"
-          />
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <label for="role">Role</label>
-          <select formControlName="role" id="role" class="form-control"
-                  type="text">
-            <option value="user">User</option>
-            <option value="admin">admin</option>
-            <option value="worker">Worker</option>
-          </select>
+<!--<div class="container">-->
+<!--<h2>Register</h2>-->
+<!--<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">-->
+<!--<div class="row">-->
+<!--<div class="col-6">-->
+<!--<div class="form-group">-->
+<!--<label for="firstName">First Name</label>-->
+<!--<input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"-->
+<!--formControlName="firstName"-->
+<!--id="firstName"-->
+<!--class="form-control"-->
+<!--type="text"-->
+<!--/>-->
+<!--<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.firstName.errors.required">First Name is required</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-6">-->
+<!--<div class="form-group">-->
+<!--<label for="lastName">Last Name</label>-->
+<!--<input-->
+<!--[ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"-->
+<!--formControlName="lastName" id="lastName"-->
+<!--class="form-control"-->
+<!--type="text"-->
+<!--/>-->
+<!--<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.lastName.errors.required">Last Name is required</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-4">-->
+<!--<div class="form-group">-->
+<!--<label for="username">Username</label>-->
+<!--<input-->
+<!--[ngClass]="{ 'is-invalid': submitted && f.username.errors }"-->
+<!--formControlName="username" id="username"-->
+<!--class="form-control"-->
+<!--type="text"-->
+<!--/>-->
+<!--<div *ngIf="submitted && f.username.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.username.errors.required">Username is required</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-8">-->
+<!--<div class="form-group">-->
+<!--<label for="phone">Phone no*</label>-->
+<!--<input-->
+<!--[ngClass]="{ 'is-invalid': submitted && f.phone.errors }"-->
+<!--formControlName="phone" id="phone"-->
+<!--class="form-control"-->
+<!--type="number"-->
+<!--/>-->
+<!--<div *ngIf="submitted && f.phone.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.email.phone.required">email is required</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="email">Email*</label>-->
+<!--<input-->
+<!--[ngClass]="{ 'is-invalid': submitted && f.username.errors }"-->
+<!--formControlName="email" id="email"-->
+<!--class="form-control"-->
+<!--type="text"-->
+<!--/>-->
+<!--<div *ngIf="submitted && f.email.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.email.errors.required">email is required</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-8">-->
+<!--<div class="form-group">-->
+<!--<label for="password">Password</label>-->
+<!--<input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"-->
+<!--formControlName="password" id="password"-->
+<!--class="form-control"-->
+<!--type="password"-->
+<!--/>-->
+<!--<div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.password.errors.required">Password is required</div>-->
+<!--<div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-4">-->
+<!--<div class="form-group">-->
+<!--<label for="role">Role</label>-->
+<!--<select formControlName="role" id="role" class="form-control"-->
+<!--type="text">-->
+<!--<option value="user">User</option>-->
+<!--<option value="admin">admin</option>-->
+<!--<option value="worker">Worker</option>-->
+<!--</select>-->
 
-          <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-            <div *ngIf="f.role.errors.required">Password is required</div>
+<!--<div *ngIf="submitted && f.role.errors" class="invalid-feedback">-->
+<!--<div *ngIf="f.role.errors.required">Password is required</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<button [disabled]="loading" class="btn btn-primary">Register</button>-->
+<!--<img *ngIf="loading"-->
+<!--src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>-->
+<!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3 box">
+      <h5 class="text-center">Create an account</h5>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            </span>
+            <input formControlName="email"
+                   autofocus
+                   class="form-control input-lg"
+                   type="email"
+                   placeholder="Email address"
+                   tabindex="1"/>
           </div>
         </div>
-      </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </span>
+            <input formControlName="password"
+                   class="form-control input-lg"
+                   type="password"
+                   placeholder="Password"
+                   tabindex="2"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </span>
+            <input formControlName="passwordRepeat"
+                   class="form-control input-lg"
+                   type="password"
+                   placeholder="Retype password"
+                   tabindex="2"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <div class="input-group">
+            <span class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </span>
+              <input formControlName="firstName"
+                     class="form-control input-lg"
+                     type="text"
+                     placeholder="First name"
+                     tabindex="3"/>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <div class="input-group">
+              <span class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+              </span>
+              <input formControlName="lastName"
+                     class="form-control input-lg"
+                     type="text"
+                     placeholder="Last name"
+                     tabindex="4"/>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <div class="input-group">
+              <span class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+              </span>
+              <select formControlName="role" class="form-control">
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="!registrationForm.valid"
+                  class="btn btn-primary form-control" type="submit">Sign up
+          </button>
+        </div>
+        <p class="text-center">or</p>
+        <div class="facebook">
+          <a (click)="loginWithFacebook()"><span><i
+            class="fa fa-lg fa-facebook-square"></i>Connect using Facebook</span></a>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">Register</button>
-      <img *ngIf="loading"
-           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-      <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
-    </div>
-  </form>
+  </div>
 </div>

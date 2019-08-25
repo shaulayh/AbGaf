@@ -1,0 +1,12 @@
+@import "../../partials/variables";
+
+.big-footer {
+  height: 200px;
+  background-color: aliceblue;
+  margin-top: $margin-large;
+  border-radius: 2px;
+  h1 {
+    display: flex;
+    justify-content: space-around;
+  }
+}

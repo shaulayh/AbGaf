@@ -46,7 +46,6 @@ export class DashboardComponent implements OnInit {
 
   handleUpload(event) {
     const file = event.target.files[0];
-    console.log(file);
     this.productImage = file;
   }
 
@@ -58,17 +57,14 @@ export class DashboardComponent implements OnInit {
 
     const productFormInfo = this.addProductForm.value;
     const formData = new FormData();
-    console.log(productFormInfo);
     formData.append('product', JSON.stringify(productFormInfo));
     formData.append('file', this.productImage);
-    console.log(this.productImage);
     this.dashBoardResource.saveUserToServer(formData).toPromise().then(() => {
         this.addProductForm.reset();
         this.showMessage = true;
         this.notification.success('was added succesfullyy');
       }
     ).catch(reason => {
-      console.log('rejected ' + reason);
       this.notification.error('not added because' + reason);
     });
 

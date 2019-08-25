@@ -67,7 +67,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AbGAF:build"
+            "browserTarget": "AbGAF:build",
+            "ssl": true,
+            "sslCert": "./ssl/server.crt",
+            "sslKey": "./ssl/server.key"
           },
           "configurations": {
             "production": {
@@ -93,7 +96,6 @@
               "../node_modules/bootstrap/dist/css/bootstrap"
             ],
             "scripts": [
-              "../node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

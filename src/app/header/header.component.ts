@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   open() {
-    console.log('was here');
+
     const modalRef = this.modalService.open(LoginComponent);
     modalRef.componentInstance.name = 'World';
   }

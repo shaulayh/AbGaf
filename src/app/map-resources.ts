@@ -21,6 +21,6 @@ export class MapResources implements OnInit {
 
   getlocation() {
     this.key = 'b51f03fb5a454d27cb60cbad5ce5ea97';
-    return this.http.get<Location>('http://api.ipapi.com/api/check?access_key=b51f03fb5a454d27cb60cbad5ce5ea97');
+    return this.http.get<Location>('https://api.ipapi.com/api/check?access_key=b51f03fb5a454d27cb60cbad5ce5ea97');
   }
 }

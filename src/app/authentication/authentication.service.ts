@@ -3,6 +3,8 @@ import {LoginRequest, LoginResource} from '../login/login.resource';
 import {Router} from '@angular/router';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SubjectSubscription} from 'rxjs/SubjectSubscription';
+import {NotificationsService} from '../module/notifications.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 
 @Injectable()
@@ -10,32 +12,28 @@ import {SubjectSubscription} from 'rxjs/SubjectSubscription';
 export class AuthenticationService {
 
   constructor(private loginResource: LoginResource,
-              private router: Router) {
+              private router: Router,
+              private notificationNotification: NotificationsService) {
   }
 
   authenticate(username, password) {
+    this.notificationNotification.info('logging in, please wait');
     this.loginResource.login(new LoginRequest(username, password)).toPromise()
       .then(
         (response: AuthResponse) => {
-          console.log(response);
-          //    sessionStorage.setItem('accessToken', response.accessToken);
           localStorage.setItem('accessToken', response.accessToken);
+          this.notificationNotification.success('logged in');
           return true;
         }
       ).catch(reason => {
-      console.log('not succesfull');
+      this.notificationNotification.warning(reason);
     });
-
     return false;
   }
 
 
   isUserLoggedIn() {
-    if (localStorage.getItem('accessToken')) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!localStorage.getItem('accessToken');
   }
 
 
@@ -51,6 +49,21 @@ export class AuthenticationService {
 
     const user: UserResponse = JSON.parse(localStorage.getItem('currentUser'));
     return user;
+  }
+
+  getCurrentUserRoles(): Roles[] {
+    return this.getCurrentUser().roles;
+  }
+
+  signUp(request: any) {
+    this.loginResource.registerNewUser(request).toPromise().then(
+      (next) => {
+        console.log(next);
+        this.notificationNotification.success('Registered Successfully');
+      }
+    ).catch((reason) => {
+      this.notificationNotification.error(reason.error['message']);
+    });
   }
 
   logOut() {
@@ -73,5 +86,15 @@ export class UserResponse {
   name: string;
   provider: string;
   providerId: number;
+  roles: Roles[];
 }
 
+export interface Roles {
+  id: number;
+  name: string;
+}
+
+export interface Response {
+  message: string;
+  status: string;
+}

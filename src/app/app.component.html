@@ -1,7 +1,7 @@
 <simple-notifications [options]="notificationsConfig"></simple-notifications>
 <app-header></app-header>
+<mat-spinner *ngIf="showLoadingIndicator" class="spinner"></mat-spinner>
 <router-outlet></router-outlet>
-
 <!--<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="checkLocation($event)">-->
 <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
 <!--</agm-map>-->

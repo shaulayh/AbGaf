@@ -1,4 +1,4 @@
-<script src="cart.component.ts"></script>
+{{ totalItemInCart}}
 <div class="container">
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step>
@@ -114,7 +114,7 @@
           <button mat-raised-button matStepperNext (click)="onSubmitDetail()" color="primary">Primary</button>
         </form>
         <div>
-          <h4>Total 20</h4>
+          <h4>{{getTotal()| currency: 'USD'}}</h4>
         </div>
       </div>
     </mat-step>
@@ -148,7 +148,7 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="Total">
             <th mat-header-cell *matHeaderCellDef> Total</th>
-            <td mat-cell *matCellDef="let element " > {{element.availableUnit}}</td>
+            <td mat-cell *matCellDef="let element "> {{element.availableUnit}}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
